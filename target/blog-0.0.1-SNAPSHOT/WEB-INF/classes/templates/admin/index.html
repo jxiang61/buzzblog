@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="admin/_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+    <link rel="stylesheet" href="../../static/css/me.css">
+    <title>BuzzBlog</title>
+</head>
+<body>
+
+    <!--nav bar-->
+    <nav th:replace="admin/_fragments :: menu(0)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small" >
+        <div class="ui container">
+            <div class="ui inverted secondary stackable menu">
+                <a href="#" class="ui teal header item" th:href="@{/admin/index}">Backend Control</a>
+                <a href="#" class="active m-item item m-mobile-hide"><i class="home icon"></i>Blog</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="idea icon"></i>Categories</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="tags icon"></i>Tags</a>
+                <div class="right m-item m-mobile-hide menu">
+                    <div class="ui dropdown item">
+                        <div class="text">
+                            <img src="https://picsum.photos/100/100?grayscale" alt="" class="ui avatar image">
+                            Junzhu Xiang
+                        </div>
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <a href="#" class="item">Log out</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="ui menu toggle black icon button m-top-right m-mobile-show">
+            <i class="sidebar icon"></i>
+        </a>
+
+    </nav>
+
+    <!--body content -->
+    <div class="m-container-small m-padded-tb-big">
+        <div class="ui container">
+            <div class="ui success large message">
+                <h3 th:text="'Hi ' + ${user.username} + ','"></h3>
+                <p style="word-spacing: 1.3px">Welcome to BuzzBlog! Want to share your brilliant ideas on BuzzBlog? Here are some tips that are sure to help.</p>
+                <ul style="font-size: 12px; word-spacing: 1.2px">
+                    <li>Create your blog in your personal blog management system. You can easily use Markdown editor to create your blogs.</li>
+                    <li>If you want to share your personal information, recommend this blog on the Homepage, or display your blog comments, just do it before posting!</li>
+                    <li>In blog management system, you can easily edit or delete your blogs!</li>
+                </ul>
+            </div>
+            <div class="ui m-container-small">
+                <div class="ui center aligned container">
+                    <a href="#" th:href="@{/admin/blogs}" class="ui teal submit button">Click to Manage Your Blogs</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+    <footer th:replace="_fragments :: footer" class="ui inverted vertical segment m-padded-tb-massive">
+        <div class="ui center aligned container">
+            <div class="ui inverted divided stackable grid">
+                <div class="three wide column">
+                    <div class="ui inverted link list">
+                        <div class="item">
+                            <img
+                                    src="../../static/images/bird.jpg"
+                                    class="ui rounded image"
+                                    style="width: 100em"
+                                    alt=""
+                            >
+                        </div>
+                    </div>
+                </div>
+
+                <div class="three wide column">
+                    <h4  class="ui inverted header m-text-thin m-text-spaced ">New Blog</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item">User Story</a>
+                        <a href="#" class="item">User Story</a>
+                        <a href="#" class="item">User Story</a>
+                    </div>
+                </div>
+
+                <div class="three wide column">
+                    <h4  class="ui inverted header m-text-thin m-text-spaced ">Contact me</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item">User Story</a>
+                        <a href="#" class="item">User Story</a>
+                        <a href="#" class="item">User Story</a>
+                    </div>
+                </div>
+                <div class="seven wide column">
+                    <h4  class="ui inverted header m-text-thin m-text-spaced ">Blog</h4>
+                    <p class="m-text-thin m-text-spaced m-opacity">
+                        This is my personal blog
+                    </p>
+                </div>
+            </div>
+            <div class="ui inverted section divider"></div>
+            <p class="m-text-thin m-text-spaced m-opacity-tiny">
+                Copyright@2020
+            </p>
+        </div>
+
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+
+    <script>
+        $('.menu.toggle').click(() => {
+            $('.m-item').toggleClass('m-mobile-hide')
+        });
+
+        $('.ui.dropdown').dropdown();
+
+    </script>
+</body>
+</html>

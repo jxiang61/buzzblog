@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/me.css">
+    <title>Search Blogs | BuzzBlog</title>
+</head>
+<body>
+
+    <!--nav bar-->
+    <nav th:replace="_fragments :: menu(1)"  class="ui inverted attached segment m-padded-tb-mini m-shadow-small" >
+        <div class="ui container">
+            <div class="ui inverted secondary stackable menu">
+                <h2 class="ui teal header item">BuzzBlog</h2>
+                <a href="#" class="m-item item m-mobile-hide"><i class="home icon"></i>iHome</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="idea icon"></i>Categories</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="tags icon"></i>Tags</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="clone icon"></i>Archives</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="info icon"></i>About me</a>
+                <div class="right item m-mobile-hide">
+                    <div class="ui icon inverted transparent input">
+                        <input type="text" placeholder="Search...">
+                        <i class="search link icon"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="ui menu toggle black icon button m-top-right m-mobile-show">
+            <i class="sidebar icon"></i>
+        </a>
+
+    </nav>
+
+    <!--body content -->
+    <div class="m-container-small m-padded-tb-big">
+        <div class="ui container">
+            <!-- header -->
+            <div class="ui top attached segment">
+                <div class="ui middle aligned two column grid">
+                    <div class="column">
+                        <h3 class="ui teal header">
+                            Results
+                        </h3>
+                    </div>
+                    <div class="right aligned column">
+                        <h3 class="ui orange header m-inline-block m-text-thin" th:text="${page.totalElements}">14</h3> blogs
+                    </div>
+                </div>
+            </div>
+
+
+            <!--blog list-->
+            <div class="ui top attached teal segment">
+                <div class="ui padded vertical segment m-padded-tb-large" th:each="blog : ${page.content}">
+                    <div class="ui middle aligned mobile reversed stackable grid" >
+                        <div class="eleven wide column">
+                            <h3 class="ui header"><a href="#" target="_blank" th:href="@{/blog/{id}(id=${blog.id})}" class="m-black" th:text="${blog.title}">My First Blog</a></h3>
+                            <p class="m-text" target="_blank" th:href="@{/blog/{id}(id=${blog.id})}" th:text="|${blog.description}...|">You really need to understand js, java, Python, C++ and so on</p>
+                            <div class="ui grid">
+                                <div class="eleven wide column">
+                                    <div class="ui mini horizontal link list">
+                                        <div class="item">
+                                            <img src="https://picsum.photos/100/100?grayscale" th:src="@{${blog.user.avatar}}" alt="" class="ui avatar image">
+                                            <div class="content">
+                                                <span href="#" th:text="${blog.user.nickname}" class="header">Junzhu</span>
+                                            </div>
+                                        </div>
+                                        <div class="item">
+                                            <i class="calendar icon"></i>
+                                            <span th:text="${#dates.format(blog.updateTime, 'MM-dd-yyyy')}">2020-06-01</span>
+                                        </div>
+                                        <div class="item">
+                                            <i class="eye icon">
+                                            </i>
+                                            <span th:text="${blog.views}">1024</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="right aligned five wide column">
+                                    <a href="#" target="_blank" th:text="${blog.type.name}" class="ui teal basic label m-padded-tiny m-text-thin">
+                                        Language
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="five wide column">
+                            <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank">
+                                <img src="https://picsum.photos/800/450?grayscale" th:src="@{${blog.firstPicture}}" alt="" class="ui rounded image">
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- footer-->
+            <div class="ui bottom attached segment" th:if="${page.totalPages} > 1">
+                <div class="ui middle aligned two column grid">
+                    <div class="column">
+                        <a href="#" th:href="@{/(page=${page.number}-1)}" th:unless="${page.first}" class="ui teal mini basic button">Previous</a>
+                    </div>
+                    <div class="right aligned column">
+                        <a href="#" th:href="@{/(page=${page.number}+1)}" th:unless="${page.last}" class="ui teal mini basic button">Next</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+    <footer th:replace="_fragments :: footer" class="ui inverted vertical segment m-padded-tb-massive">
+        <div class="ui center aligned container">
+            <div class="ui inverted divided stackable grid">
+                <div class="three wide column">
+                    <div class="ui inverted link list">
+                        <div class="item">
+                            <img
+                                    src="../static/images/bird.jpg"
+                                    class="ui rounded image"
+                                    style="width: 100em"
+                                    alt=""
+                            >
+                        </div>
+                    </div>
+                </div>
+
+                <div class="three wide column">
+                    <h4  class="ui inverted header m-text-thin m-text-spaced ">New Blog</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item">User Story</a>
+                        <a href="#" class="item">User Story</a>
+                        <a href="#" class="item">User Story</a>
+                    </div>
+                </div>
+
+                <div class="three wide column">
+                    <h4  class="ui inverted header m-text-thin m-text-spaced ">Contact me</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item">User Story</a>
+                        <a href="#" class="item">User Story</a>
+                        <a href="#" class="item">User Story</a>
+                    </div>
+                </div>
+                <div class="seven wide column">
+                    <h4  class="ui inverted header m-text-thin m-text-spaced ">Blog</h4>
+                    <p class="m-text-thin m-text-spaced m-opacity">
+                        This is my personal blog
+                    </p>
+                </div>
+            </div>
+            <div class="ui inverted section divider"></div>
+            <p class="m-text-thin m-text-spaced m-opacity-tiny">
+                Copyright@2020
+            </p>
+        </div>
+
+    </footer>
+
+
+    <!--/*/<th:block th:replace="_fragments :: script">/*/-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+    <!--/*/</th:block>/*/-->
+
+    <script>
+        $('.menu.toggle').click(() => {
+            $('.m-item').toggleClass('m-mobile-hide')
+        })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Special+Elite&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/me.css" th:href="@{/css/me.css}">
+    <link rel="stylesheet" href="../static/css/typo.css" th:href="@{/css/typo.css}">
+    <link rel="stylesheet" href="../static/lib/prism/prism.css" th:href="@{/lib/prism/prism.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/animate.min.css" th:href="@{/css/animate.min.css}">
+    <link rel="stylesheet" href="../static/lib/tocbot/tocbot.css" th:href="@{/lib/tocbot/tocbot.css}">
+
+    <link rel="stylesheet" href="../../static/lib/editormd/css/editormd.min.css" th:href="@{/lib/editormd/css/editormd.min.css}">
+    <title th:replace="${title}" >BuzzBlog</title>
+</head>
+<body>
+
+<nav th:fragment="menu(n)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small" >
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu">
+            <a class="ui teal header item" th:href="@{/}">
+                <span class="m-header m-title">
+                    BuzzBlog
+                </span>
+            </a>
+            <p class="m-item item m-mobile-hide" th:if="${user.type == 0}" style="padding-bottom: 0">Welcome! Start to manage your excellent blogs!</p>
+            <a href="#" th:href="@{/admin/blogs}" th:if="${user.type == 1}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active' "><i class="home icon"></i>Blog</a>
+            <a href="#" th:href="@{/admin/types}" th:if="${user.type == 1}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active' "><i class="idea icon"></i>Categories</a>
+            <a href="#" th:href="@{/admin/tags}" th:if="${user.type == 1}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active' "><i class="tags icon"></i>Tags</a>
+            <div class="right m-item m-mobile-hide menu">
+                <div class="ui dropdown item">
+                    <div class="text">
+                        <img th:src="${user.avatar}" alt="" class="ui avatar image">
+                        <span th:text="${user.username}">
+                            Junzhu Xiang
+                        </span>
+
+                    </div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a href="#" th:href="@{/admin/logout}" class="item">Log out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui menu toggle black icon button m-top-right m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+
+</nav>
+
+
+
+<footer th:fragment="footer" class="ui inverted vertical segment m-padded-tb-massive">
+    <div class="ui center aligned container">
+        <div class="ui inverted divided stackable grid">
+
+            <div class="three wide column">
+                <div class="ui inverted link list">
+                    <div class="ui teal header item" >
+                        <div class="row">
+                            <span class="m-header m-title m-" style="font-size: 40px !important;">
+                                Buzz
+                            </span>
+                        </div>
+                        <div class="row m-margin-top-small">
+                            <span class="m-header m-title" style="font-size: 40px !important;">
+                                Blog
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="three wide column">
+                <h4 class="ui inverted header m-text-thin m-text-spaced ">Contact Admin</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item m-text-thin">Email: jzhsiang@gmail.com</a>
+                    <a href="https://www.linkedin.com/in/junzhu-xiang-8334571a1" class="item m-text-thin">LinkedIn: Junzhu Xiang</a>
+                </div>
+            </div>
+
+            <div class="ten wide column">
+                <h4 class="ui inverted header m-text-thin m-text-spaced ">BuzzBlog</h4>
+                <p class="m-text-thin m-text-spaced m-opacity-mini">
+                    BuzzBlog provides you a wonderful blog sharing platform.
+
+                </p>
+                <p class="m-text-thin m-text-spaced m-opacity-mini">
+                    In BuzzBlog, you can share your blogs freely and creatively.
+                </p>
+            </div>
+        </div>
+        <div class="ui inverted section divider"></div>
+        <p class="m-text-thin m-text-spaced m-opacity-tiny">Copyright © 2020-2022 BuzzBlog</p>
+        <p class="m-text-thin m-text-spaced m-opacity-tiny">Designed By Junzhu</p>
+    </div>
+</footer>
+
+
+<th:block th:fragment="script">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script>
+
+    <script src="../../static/lib/editormd/editormd.min.js" th:src="@{/lib/editormd/editormd.min.js}"></script>
+    <script src="../static/lib/editormd/languages/en.js" th:src="@{/lib/editormd/languages/en.js}"></script>
+
+    <script src="../static/lib/prism/prism.js" th:src="@{/lib/prism/prism.js}"></script>
+    <script src="../static/lib/tocbot/tocbot.min.js" th:src="@{/lib/tocbot/tocbot.min.js}"></script>
+</th:block>
+
+
+
+
+</body>
+</html>
