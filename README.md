@@ -10,7 +10,7 @@ This project aims to design and implement a blog platform for everyone to share 
 ## Techniques
 *  MySQL + Spring Boot + Hibernate + Thymeleaf + Semantic-UI
 
-## Project Preview
+## Project Overview
 ### Home page
 <br><br>
  ![image1](https://github.com/jxiang61/buzzblog/blob/master/images_demo/101.png)
